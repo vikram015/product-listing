@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item cart-dropdown" ngbDropdown autoClose="outside" #cartDropDown="ngbDropdown">
+        <div ngbDropdownToggle class="text-danger"
+          id="dropdownBasic1" ngbDropdownToggle>
+          <i style="font-size: 30px;" class="bi bi-cart4"></i>
+          <span *ngIf="totalCartItem != 0" class="text-white position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{totalCartItem}}</span>
+        </div>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu-right" style="width: 400px;">
+          <cart (close)="cartDropDown.close()"></cart>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

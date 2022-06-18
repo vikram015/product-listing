@@ -1,0 +1,11 @@
+<div class="row" *ngIf="($deliveryAddressess | async) as deliveryAddressess">
+    <ng-container *ngIf="deliveryAddressess.length > 0">
+        <div class="col-12" *ngFor="let deliveryAddress of deliveryAddressess">
+        
+        </div>
+    </ng-container>
+    <div class="col-9" *ngIf="deliveryAddressess.length == 0">
+        <add-delivery-address  (save)="addDeliveryAddress($event)"></add-delivery-address> 
+    </div>
+    
+</div>

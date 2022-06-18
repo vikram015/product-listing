@@ -1,0 +1,9 @@
+<div class="dashboard row mt-3">
+    <div class="side-bar col-3">
+        <category-list [categories]="categories"></category-list>
+    </div>
+    <div class="content-area col">
+        <product-list [selectedProducts]="($cart|async)?.products" (add)="addToCart($event)" (remove)="removeFromCart($event)"
+            (productClick)="productClick($event)" [products]="products"></product-list>
+    </div>
+</div>

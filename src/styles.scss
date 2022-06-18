@@ -1,1 +1,94 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.product{
+    cursor: pointer;
+    height: 100%;
+    .card{
+        height: 100%;
+        .card-body{
+            padding: 0;
+        }
+    }
+}
+.add-remove-button{
+    .q-label{
+        padding-left: .25rem;
+        padding-right: .25rem;
+        border: 1px solid #ccc;
+        border-right: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        font-size: 13px;
+        padding-top: 2px;
+    }
+    .q-text-box{
+        border: 1px solid #ccc;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    #btn-inc,#btn-dec{
+        min-width: 1.5rem;
+        border-radius: 0px;
+        border-color: #ccc;
+        background-color: white;
+        box-shadow: 0px 1px 4px #ccc;
+        &:hover{
+            color: #181818;
+        }
+    }
+    #btn-inc{
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+    #btn-dec{
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+    .q-text{
+        opacity: 0.8;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 0px 1px 4px #ccc;
+        font-size: 13px;
+        padding-top: 0.18rem;
+        padding-left: 0.15rem;
+        padding-right: 0.15rem;
+        min-width: 1.5rem;
+        text-align: center;
+    }
+    .btn{
+        height: 25px;
+        padding: 0;
+    }
+    #btn-add{
+        vertical-align: top;    
+        font-size: 13px;
+        padding: 0 0.50rem;
+    }
+    .form-control-sm{
+        height: 23px;
+    }
+}
+.img-slider{
+    img{
+        width: 100%;
+    }
+}
+.cart-dropdown{
+    .dropdown-item:active{
+        background-color: white;
+        color: #212529;
+    }
+    .dropdown-item:hover{
+        background-color: white;
+    }
+}
+
+.delivery-address{
+    .address-type{
+        display: none;
+    }
+}

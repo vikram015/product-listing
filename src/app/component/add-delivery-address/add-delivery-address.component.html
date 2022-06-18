@@ -1,0 +1,88 @@
+<div class="col-12 pt-3">
+    <div class="row">
+        <h3>Delivery Address</h3>
+    </div>
+</div>
+<div class="col-12 pb-2 pt-3 delivery-address" style="background-color: #f9f8f8;">
+    <form [formGroup]="deliveryAddressForm">
+        <h6>Personal Details</h6>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>* Enter first name</label>
+                <input formControlName="firstName" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-3">
+                <label>* Enter last name</label>
+                <input formControlName="lastName" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-6">
+                <label>* Enter contact number</label>
+                <input formControlName="contactNumber" class="form-control form-control-sm" type="text" />
+            </div>
+        </div>
+        <h6>Address Details</h6>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>* House Number</label>
+                <input formControlName="houseNumber" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-9">
+                <label>Enter apartment name</label>
+                <input formControlName="apartmentName" class="form-control form-control-sm" type="text" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Enter street details</label>
+                <input formControlName="streetAddress" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Enter landmark for easy reach out</label>
+                <input formControlName="landMark" class="form-control form-control-sm" type="text" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Enter city name</label>
+                <input formControlName="cityName" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-6">
+                <label>* Area details</label>
+                <input formControlName="areaDetails" class="form-control form-control-sm" type="text" />
+            </div>
+            <div class="form-group col-md-3">
+                <label>* Enter Pincode</label>
+                <input formControlName="pinCode" class="form-control form-control-sm" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+
+            <input type="radio" class="address-type" value="home" formControlName="addressType" id="home"
+                autocomplete="off" checked>
+            <label [class.btn-outline-success]="deliveryAddressForm.controls['addressType'].value ==='home'"
+                [class.btn-default]="deliveryAddressForm.controls['addressType'].value !=='home'"
+                class="btn bg-white mr-2" for="home">HOME</label>
+
+            <input type="radio" class="address-type" value="office" formControlName="addressType" id="office"
+                autocomplete="off">
+            <label [class.btn-outline-success]="deliveryAddressForm.controls['addressType'].value ==='office'"
+                [class.btn-default]="deliveryAddressForm.controls['addressType'].value !=='office'"
+                class="btn bg-white mr-2 btn-default" for="office">OFFICE</label>
+
+            <input type="radio" class="address-type" value="other" formControlName="addressType" id="other"
+                autocomplete="off">
+            <label [class.btn-outline-success]="deliveryAddressForm.controls['addressType'].value ==='other'"
+                [class.btn-default]="deliveryAddressForm.controls['addressType'].value !=='other'"
+                class="btn bg-white btn-default" for="other">OTHER</label>
+
+            <!-- <button class="btn btn-outline-success bg-white mr-2">HOME</button>
+            <button class="btn btn-default bg-white mr-2">OFFICE</button>
+            <button class="btn btn-default bg-white">OTHER</button> -->
+        </div>
+        <div class="form-group">
+            <button (click)="save.emit(deliveryAddressForm.value)" class="btn btn-secondary">
+                ADD ADDRESS
+            </button>
+        </div>
+    </form>
+</div>

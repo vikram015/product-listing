@@ -1,0 +1,61 @@
+<div class="row pt-3" *ngIf="($cart | async)?.products as products">
+    <div class="col-12">
+        <h3 class="text-muted">Your Cart (<span>{{($cart|async)?.totalItem}} Items</span>)</h3>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ITEM DESCRIPTION</th>
+                    <th>UNIT PRICE</th>
+                    <th>QUANTITY</th>
+                    <th class="text-right">SUBTOTAL</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of products|keyvalue">
+                    <td>{{item.value.product.name}}</td>
+                    <td>Rs {{item.value.product.price}}</td>
+                    <td><add-remove-button
+                        (add)="addToCart(item.value.product)"
+                        (remove)="removeProduct(item.value.product)" [inCart]="true" [quantity]="item.value.quantity"></add-remove-button></td>
+                    <td class="text-right">Rs {{item.value.quantity * item.value.product.price}}</td>
+                    <td>
+                        <span style="cursor: pointer" (click)="removeProduct(item.value.product,true)">&times;</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6">
+                <div class="checkout-box border border-secondary rounded p-3">
+                    <div class="row">
+                        <div class="col">SubTotal</div>
+                        <div class="col text-right">{{getSum(products)}}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">Delivery Charges</div>
+                        <div class="col text-right">**</div>
+                    </div>
+                    <div class="row border-top pt-2">
+                        <div class="col">
+                            <h3>Total</h3>
+                        </div>
+                        <div class="col text-right"><h3>{{getSum(products)}}</h3></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col text-right">
+                            <button (click)="checkOut()" class="btn btn-warning pl-4 pr-4">
+                                Checkout <i class="bi bi-cart-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

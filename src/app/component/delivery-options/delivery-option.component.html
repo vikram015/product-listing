@@ -1,0 +1,13 @@
+<div class="delivery-options">
+    <div class="row mt-1 mb-2">
+        <div class="col">
+            <div>
+                <div style="float:left;margin-top: 9px;font-size: 12px;">MRP: </div> 
+                <div style="display: inline-block;">&nbsp;Rs {{product.price}}</div>
+            </div>
+        </div>
+    </div>
+    <add-remove-button (add)="add.emit($event)"
+        (remove)="remove.emit($event)" [quantity]="selectedProduct?.quantity">
+    </add-remove-button>
+</div>

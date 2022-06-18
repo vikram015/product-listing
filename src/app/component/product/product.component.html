@@ -1,0 +1,22 @@
+<div class="product ml-1 pt-1" style="box-shadow: 2px 3px 6px #ccc;">
+    <div class="card">
+        <img (click)="productClick.emit(product)" class="card-img-top" alt="" [src]="product.images[0]" />
+        <div class="card-body">
+            <div class="row no-gutters pl-1 pr-1">
+                <div (click)="productClick.emit(product)" class="card-title">{{product.name}}</div>
+            </div>
+            <div class="row no-gutters pl-1" [ngSwitch]="product.quantity.unit">
+                <div *ngSwitchCase="'kg'" class="text-muted mb-3">1 kg</div>
+                <div *ngSwitchCase="'item'" class="text-muted mb-3">1 pc</div>
+                <div *ngSwitchCase="'lt'" class="text-muted mb-3">1 litter</div>
+                <div *ngSwitchDefault="" class="text-muted"></div>
+            </div>
+        </div>
+        <div class="card-footer pl-2 pr-2 pt-1">
+            <delivery-options 
+                [product]="product" (add)="addProduct($event)" (remove)="removeProduct($event)"
+                [selectedProduct]="selectedProducts && selectedProducts[product.id!]">
+            </delivery-options>
+        </div>
+    </div>
+</div>

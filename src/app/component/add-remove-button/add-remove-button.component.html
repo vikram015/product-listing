@@ -1,0 +1,24 @@
+<div class="add-remove-button">
+    <div class="row no-gutters" *ngIf="quantity && quantity != 0 else default">
+        <button (click)="remove.emit()" id="btn-dec" class="btn">-</button>
+        <div class="q-text bg-warning">{{quantity}} <span *ngIf="!inCart">in basket</span></div>
+        <button (click)="add.emit({})" id="btn-inc" class="btn">+</button>
+    </div>
+    <ng-template #default>
+        <div class="row">
+            <div class="quantity col-6 pr-0">
+                <div class="row no-gutters">
+                    <div class="col-auto q-label text-muted">Qty</div>
+                    <div class="col q-text-box">
+                        <input value="1" #qty class="text-muted form-control form-control-sm border-0" type="text"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <button id="btn-add" (click)="add.emit({quantity: qty.valueAsNumber })" class="btn btn-warning">
+                    ADD <i class="bi bi-cart4"></i> 
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,44 @@
+<ng-container *ngIf="($cart | async)?.products as products else noProduct">
+    <div style="border-bottom: 1px solid #ccc;" class="pl-2 pr-2" ngbDropdownItem *ngFor="let item of products | keyvalue">
+        <div class="cart-product">
+            <div class="row no-gutters">
+                <div class="col-7">
+                    <h6 class="name m-0">{{item.value.product.name}}</h6>
+                    <div class="quantity text-muted" style="font-size: .8rem;">{{item.value.quantity}} *
+                        {{item.value.product.price}}</div>
+                </div>
+                <div class="col-3 mt-1 mb-2">
+                    <add-remove-button (add)="increment(item.value.product)"
+                        (remove)="decrement(item.value.product)"
+                        [quantity]="item.value.quantity" [inCart]="true"></add-remove-button>
+                </div>
+                <div class="col-2 align-self-center text-right text-muted" style="font-size: .8rem;">
+                    Rs {{item.value.product.price * item.value.quantity}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-options mt-1">
+        <div class="row no-gutters">
+            <div class="col"></div>
+            <div class="col-7">
+                <div class="row no-gutters">
+                    <div class="col-7">Sub Total: </div>
+                    <div class="col text-right mr-3">Rs {{getSum(products)}}</div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-9">Delivery Charges: </div>
+                    <div class="col text-right mr-3">**</div>
+                </div>
+                <div class="row">
+                    <div class="col mr-3 mt-2">
+                        <a [routerLink]="['/view-cart']" (click)="close.emit()" class="btn btn-block btn-sm btn-success">View Basket And Checkout</a>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #noProduct>
+    <div ngbDropdownItem class="col-12">No Product Selected</div>
+</ng-template>

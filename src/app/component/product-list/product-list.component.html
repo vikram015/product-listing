@@ -1,0 +1,8 @@
+<div class="row bg-light no-gutters pt-1 pb-3">
+    <ng-container *ngFor="let product of products">
+        <div class="col-3">
+            <product [selectedProducts]="selectedProducts" (add)="add.emit($event)" (remove)="remove.emit($event)" 
+            (productClick)="productClick.emit($event)" [product]="product"></product>
+        </div>
+    </ng-container>
+</div>
