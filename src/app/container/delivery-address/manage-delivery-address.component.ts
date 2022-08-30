@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { OAuthService } from "angular-oauth2-oidc";
 import { Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
 import { DeliveryAddress } from "src/app/model/delivery-address.model";
+import { CartService } from "src/app/services/cart.service";
 import { DeliveryService } from "src/app/services/delivery.service";
 
 @Component({
@@ -9,13 +12,30 @@ import { DeliveryService } from "src/app/services/delivery.service";
 })
 export class ManageDeliveryAddressController implements OnInit{
     $deliveryAddressess!: Observable<DeliveryAddress[]>
-    constructor(private deliveryService: DeliveryService){}
+    selectedAddress?: DeliveryAddress
+    createmode = false
+    constructor(private deliveryService: DeliveryService,private cartService: CartService,private oauthService:OAuthService){
+    
+    }
     ngOnInit(){
-        this.$deliveryAddressess = this.deliveryService.getUserAddress("NOID")
+        this.loadDeliveryAddress()
+        this.cartService.$cart.subscribe(cart => this.selectedAddress = cart.address)
     }
     addDeliveryAddress(deliveryAddress:DeliveryAddress){
-        console.log("adding address",deliveryAddress)
-        this.deliveryService.addNewAddress(deliveryAddress,'vikram')
-        .subscribe(res => console.log(res));
+        this.deliveryService.addNewAddress(deliveryAddress,(<any>this.oauthService.getIdentityClaims()).sub)
+        .subscribe(res =>{ 
+            this.createmode = false
+            this.loadDeliveryAddress()
+        });
+    }
+    selectAddress(address:DeliveryAddress){
+        this.cartService.updateDeliveryAddress(address)
+    }
+    deleteAddress(address:DeliveryAddress){
+        this.deliveryService.deleteAddress(address)
+        .subscribe(res => this.$deliveryAddressess = this.$deliveryAddressess.pipe(map(items => items.filter(item =>item.id != address.id))))
+    }
+    loadDeliveryAddress(){
+        this.$deliveryAddressess = this.deliveryService.getUserAddress((<any>this.oauthService.getIdentityClaims()).sub)
     }
 }

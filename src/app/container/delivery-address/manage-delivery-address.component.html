@@ -1,11 +1,22 @@
 <div class="row" *ngIf="($deliveryAddressess | async) as deliveryAddressess">
-    <ng-container *ngIf="deliveryAddressess.length > 0">
-        <div class="col-12" *ngFor="let deliveryAddress of deliveryAddressess">
-        
-        </div>
-    </ng-container>
-    <div class="col-9" *ngIf="deliveryAddressess.length == 0">
+    <div class="col-9" *ngIf="deliveryAddressess.length == 0 || createmode else showAddress">
         <add-delivery-address  (save)="addDeliveryAddress($event)"></add-delivery-address> 
     </div>
-    
+    <ng-template #showAddress>
+        <div class="col-12 mt-3">
+            <div class="row mb-3">
+                <div class="col">
+                    <h5 class="d-inline">Select Address</h5> 
+                    <i (click)="createmode = true" style="font-size: 25px;cursor: pointer;line-height: 0;border-radius: 3px;font-weight: bold;" 
+                    class="bi bi-plus d-inline ml-3 bg-secondary text-white p-0"></i>
+                </div>
+            </div>
+            <select-address (onDelete)="deleteAddress($event)" (onSelect)="selectAddress($event)" [selectedAddress]="selectedAddress" [addresses]="deliveryAddressess"></select-address>
+        </div>
+    </ng-template>
+</div>
+<div class="row">
+    <div class="col text-right">
+        <button class="btn btn-success" [disabled]="!selectedAddress">Proceed</button>
+    </div>
 </div>

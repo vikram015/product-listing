@@ -11,4 +11,5 @@ export interface DeliveryAddress{
     areaDetails: string,
     pinCode: number,
     addressType: string
+    userId: string
 }

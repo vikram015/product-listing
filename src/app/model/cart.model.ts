@@ -1,6 +1,8 @@
+import { DeliveryAddress } from "./delivery-address.model";
 import { Product } from "./product.model";
 
 export interface Cart{
+    address?: DeliveryAddress;
     products: SelectedItems,
     totalItem: number
     id?:string,
